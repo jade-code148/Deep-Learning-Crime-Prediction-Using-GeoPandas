@@ -95,8 +95,8 @@ history = model.fit(X_scaled, y_scaled, epochs=10, batch_size=32, validation_spl
 y_pred_scaled = model.predict(X_scaled)
 
 # Output actual and predicted values
-y_pred = scaler_y.inverse_transform(y_pred_scaled.reshape(-1, 1)).reshape(y_scaled.shape) # Use scaler_y to inverse transform
-y_true_original = scaler_y.inverse_transform(y_true.reshape(-1, 1)).reshape(y_true.shape) # Use scaler_y to inverse transform
+y_pred = scaler_y.inverse_transform(y_pred_scaled.reshape(-1, 1)).reshape(y_scaled.shape) 
+y_true_original = scaler_y.inverse_transform(y_true.reshape(-1, 1)).reshape(y_true.shape) 
 
 comparison_df = pd.DataFrame({
     'Actual': y_true_original.flatten(),
@@ -130,15 +130,13 @@ future_predictions_flat = np.concatenate(future_predictions) if future_predictio
 # Define crime_heads, num_crime_heads, and num_years before using them
 crime_heads = df_long['CRIME HEAD'].unique()  # Assuming df_long is the DataFrame containing crime data
 num_crime_heads = len(crime_heads)
-num_years = 3  # Adjust as needed based on your prediction horizon
+num_years = 3  
 
 # Debug print statements
 print(f"Crime Heads: {crime_heads}")
 print(f"Number of Crime Heads: {num_crime_heads}")
 print(f"Number of Years: {num_years}")
 print(f"Future Predictions Length: {len(future_predictions_flat)}")
-
-# ... (Rest of the code remains unchanged) ...
 
 # Check if lengths match
 expected_length = num_crime_heads * num_years
@@ -151,7 +149,7 @@ if len(future_predictions_flat) == expected_length:
         'Predicted Arrests': future_predictions_flat
     })
 else:
-    #print("Mismatch in lengths. Adjusting data.")
+   
     # Adjust predictions to fit the expected length
     adjusted_predictions = np.resize(future_predictions_flat, expected_length)
 
@@ -202,9 +200,8 @@ states = [
     'State7', 'State8', 'State9', 'State10', 'State11', 'State12', 'State13'
 ]
 
-# Example cluster data (make sure it's the same length as the states list)
-# If you have fewer clusters than states, repeat the cluster list to match
-clusters = [0, 1, 2]  # Example clusters
+
+clusters = [0, 1, 2]  
 num_states = len(states)
 num_clusters = len(clusters)
 
@@ -298,7 +295,7 @@ name_mapping = {
     'State11': 'Goa',
     'State12': 'Gujarat',
     'State13': 'Haryana'
-    # Add mappings for all states as needed
+   =
 }
 
 state_cluster_data['STATE/UT'] = state_cluster_data['STATE/UT'].map(name_mapping)
